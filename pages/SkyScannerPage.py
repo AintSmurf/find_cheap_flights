@@ -12,9 +12,11 @@ class SkyScanner(SkyScannerLocators):
 
     def start(self):
         self.driver.get(self.url)
-        self.fill_countries()
 
-    def fill_countries(self):
-        self.sl.wait_and_input_text(self.FROM, "TLV")
-        self.sl.wait_and_input_text(self.TO, "BER")
+    def fill_countries(self, origin, destination):
+        self.sl.wait_and_input_text(self.FROM, origin)
+        self.sl.wait_and_input_text(self.TO, destination)
         self.sl.wait_and_click(self.SEARCH)
+        url = self.driver.current_url
+        self.driver.quit()
+        return url

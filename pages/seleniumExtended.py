@@ -19,31 +19,31 @@ class SeleniumExtended:
     def wait_and_click(self, locator, timeout=None):
         timeout = timeout if timeout else self.default_timeout
         try:
-            WebDriverWait(self.driver, self.default_timeout).until(
+            WebDriverWait(self.driver, timeout).until(
                 EC.visibility_of_element_located(locator)
             ).click()
         except Exception as e:
             sleep(2)
-            WebDriverWait(self.driver, self.default_timeout).until(
+            WebDriverWait(self.driver, timeout).until(
                 EC.visibility_of_element_located(locator)
             ).click()
 
     def wait_until_element_contains_text(self, locator, text, timeout=None):
         timeout = timeout if timeout else self.default_timeout
         try:
-            WebDriverWait(self.driver, self.default_timeout).until(
+            WebDriverWait(self.driver, timeout).until(
                 EC.text_to_be_present_in_element(locator, text)
             )
         except TimeoutException:
             sleep(2)
-            WebDriverWait(self.driver, self.default_timeout).until(
+            WebDriverWait(self.driver, timeout).until(
                 EC.text_to_be_present_in_element(locator, text)
             )
 
     def wait_until_element_is_clickble(self, locator, timeout=None):
         timeout = timeout if timeout else self.default_timeout
 
-        WebDriverWait(self.driver, self.default_timeout).until(
+        WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable(locator)
         ).click()
 
@@ -56,7 +56,7 @@ class SeleniumExtended:
             f"after timeout of {timeout}"
         )
         try:
-            el = WebDriverWait(self.driver, self.default_timeout).until(
+            el = WebDriverWait(self.driver, timeout).until(
                 EC.visibility_of_all_elements_located(locator)
             )
         except TimeoutException:
@@ -66,7 +66,7 @@ class SeleniumExtended:
     def wait_and_get_element_Text(self, locator, timeout=None):
         timeout = timeout if timeout else self.default_timeout
         try:
-            elm = WebDriverWait(self.driver, self.default_timeout).until(
+            elm = WebDriverWait(self.driver, timeout).until(
                 EC.visibility_of_element_located(locator)
             )
         except TimeoutException:

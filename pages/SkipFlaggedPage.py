@@ -11,10 +11,28 @@ class SkipFlagged(SkipFlaggedLocators):
 
     def start(self):
         self.driver.get(self.url)
-        self.fill_countries()
 
-    def fill_countries(self):
-        print(self.LIST_OF_INPUTS)
-        # self.sl.wait_and_input_text(self.LIST_OF_INPUTS[1], "TLV")
-        # self.sl.wait_and_click(self.AUTO_COMPLETE)
-        # self.sl.wait_and_input_text(self.LIST_OF_INPUTS[1], "BER")
+    def fill_countries(self, origin, destination):
+        # get all elements to send keys
+        elements = self.sl.wait_and_get_elements(self.LIST_OF_INPUTS)
+
+        # first box
+        elements[0].clear()
+        elements[0].send_keys(origin)
+        self.sl.wait_until_element_is_clickble(self.AUTO_COMPLETE_FIRST)
+
+        # second box
+        elements[1].send_keys(destination)
+        self.sl.wait_until_element_is_clickble(self.AUTO_COMPLETE_SECOND)
+
+        # change trip type
+        self.sl.wait_and_click(self.TRIP_TYPE)
+        self.sl.wait_until_element_is_clickble(self.ONE_WAY)
+
+        # search
+        self.sl.wait_and_click(self.SEARCH_BUTTON)
+
+        # return the url
+        url = self.driver.current_url
+        self.driver.quit()
+        return url
