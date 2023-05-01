@@ -24,7 +24,7 @@ def main():
     driver = get_driver()
     sk = SkyScanner(driver)
     url = sk.fill_countries("TLV", "BERLIN")
-    list_of_url.append([sk.__class__.__name__, url])
+    list_of_url.append([sk.__class__.__name__, url]
 
 
 main()
