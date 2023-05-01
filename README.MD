@@ -32,7 +32,6 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-
 ### Running the Application
 To run the application, make sure the virtual environment is active and run the following command:
 ```
