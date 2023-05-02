@@ -1,8 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from pages.SkyScannerPage import SkyScanner
-from selenium.webdriver.common.by import By
 from pages.SkipFlaggedPage import SkipFlagged
+from pages.MakeItCsv import CovertToCSV
 
 
 def get_driver():
@@ -14,17 +14,21 @@ def get_driver():
 
 
 def main():
+    # objects
+    excel = CovertToCSV()
     list_of_url = []
+
     driver = get_driver()
     sf = SkipFlagged(driver)
     url = sf.fill_countries("TLV", "BERLIN")
     list_of_url.append([sf.__class__.__name__, url])
-    print(list_of_url)
 
     driver = get_driver()
     sk = SkyScanner(driver)
     url = sk.fill_countries("TLV", "BERLIN")
     list_of_url.append([sk.__class__.__name__, url])
+
+    excel.convert(list_of_url)
 
 
 main()
