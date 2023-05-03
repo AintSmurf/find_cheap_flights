@@ -2,7 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from pages.SkyScannerPage import SkyScanner
 from pages.SkipFlaggedPage import SkipFlagged
-from pages.MakeItCsv import CovertToCSV
+from helpers.MakeItCsv import CovertToCSV
+from helpers.delete import System_helper
 
 
 def get_driver():
@@ -16,6 +17,7 @@ def get_driver():
 def main():
     # objects
     excel = CovertToCSV()
+    system_helper = System_helper()
     list_of_url = []
 
     driver = get_driver()
@@ -29,6 +31,9 @@ def main():
     list_of_url.append([sk.__class__.__name__, url])
 
     excel.convert(list_of_url)
+    excel.convert_to_excel()
+
+    system_helper.delete_file()
 
 
 main()
