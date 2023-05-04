@@ -16,9 +16,8 @@ class SkyScanner(SkyScannerLocators):
     def fill_countries(self, origin, destination):
         self.sl.wait_and_input_text(self.FROM, origin)
         self.sl.wait_and_input_text(self.TO, destination)
-        self.sl.wait_and_click(self.SEARCH[0])
+        self.sl.wait_and_click(self.SEARCH)
         self.sl.wait_until_element_is_clickble(self.SORT)
         url = self.driver.current_url
-        print(url)
         self.driver.quit()
         return url
