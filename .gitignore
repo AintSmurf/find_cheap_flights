@@ -4,3 +4,5 @@ __pycache__
 venv
 urls.csv
 flights.xlsx
+pass.txt
+test.py
