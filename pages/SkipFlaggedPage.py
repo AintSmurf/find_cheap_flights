@@ -34,5 +34,4 @@ class SkipFlagged(SkipFlaggedLocators):
 
         # return the url
         url = self.driver.current_url
-        self.driver.quit()
         return url
