@@ -5,12 +5,15 @@ from pages.SkipFlaggedPage import SkipFlagged
 from helpers.MakeItCsv import CovertToCSV
 from helpers.delete import System_helper
 import threading
+import undetected_chromedriver as uc
 
 
 def get_driver():
     chrome_options = Options()
     chrome_options.add_experimental_option("detach", True)
+    # chrome_options.add_argument("--headless")
     driver = webdriver.Chrome("chromedriver.exe", options=chrome_options)
+    # driver = driver = uc.Chrome()
     return driver
 
 
